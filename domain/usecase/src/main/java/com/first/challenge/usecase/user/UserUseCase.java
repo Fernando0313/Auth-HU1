@@ -32,9 +32,7 @@ public class UserUseCase implements  IUserUseCase{
                     return userRepository.save(u);
                 });
     }
-    public Mono<User> GetUserById(String id){
-        return userRepository.findById(id);
-    }
+
 
     @Override
     public Mono<Boolean> existsByIdentityDocument(String identityDocument) {

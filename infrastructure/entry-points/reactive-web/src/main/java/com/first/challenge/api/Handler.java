@@ -23,17 +23,6 @@ public class Handler {
 
 
 
-
-    public Mono<ServerResponse> listenGetUserById(ServerRequest serverRequest) {
-        String id = serverRequest.pathVariable("id");
-
-        return userUseCase.GetUserById(id)
-                .flatMap(task -> ServerResponse.ok()
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .bodyValue(task))
-                .switchIfEmpty(ServerResponse.notFound().build());
-    }
-
     public Mono<ServerResponse> listenSaveUser(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(CreateUserDto.class)
                 .map(userDtoMapper::toEntity) // convert DTO -> User entity
